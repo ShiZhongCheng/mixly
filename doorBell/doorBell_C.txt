@@ -1,0 +1,61 @@
+﻿#include <Microduino_ColorLED.h>
+
+
+
+ColorLED strip = ColorLED(1, 6);
+
+#define BuzzerPin4 4
+
+
+
+void setup()
+
+{
+
+  strip.begin();
+
+  pinMode(8,INPUT);
+
+}
+
+
+
+void loop()
+
+{
+
+  strip.setPixelColor(1-1, 255,0,0);
+
+  strip.show();
+
+  if (!digitalRead(8)) {
+
+    delay(1000);
+
+    while(!digitalRead(8));
+
+    strip.setPixelColor(1-1, 0,153,0);
+
+    strip.show();
+
+    for (int i = 1; i <= 3; i = i + (1)) {
+
+      tone(BuzzerPin4,1400);
+
+    }
+
+    delay(500);
+
+    tone(BuzzerPin4,800);
+
+    delay(800);
+
+    noTone(BuzzerPin4);
+
+
+
+  }
+
+
+
+}
